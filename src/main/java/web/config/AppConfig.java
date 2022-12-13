@@ -29,16 +29,16 @@ import java.util.Properties;
     private Environment env;
 
 
+
     @Bean
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/db2");
-        dataSource.setUsername("root");
-        dataSource.setPassword("root");
+        dataSource.setDriverClassName(env.getProperty("db.driver"));
+        dataSource.setUrl(env.getProperty("db.url"));
+        dataSource.setUsername(env.getProperty("db.username"));
+        dataSource.setPassword(env.getProperty("db.password"));
         return dataSource;
     }
-
 
 
         @Bean
@@ -55,6 +55,9 @@ import java.util.Properties;
             Properties properties = new Properties();
             properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
             properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+            properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
+            properties.put("hibernate.format_sql", env.getProperty("hibernate.format_sql"));
+
             return properties;
         }
 

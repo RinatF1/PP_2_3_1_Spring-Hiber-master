@@ -16,12 +16,16 @@ public class UserDaoImpl implements UserDao{
     private EntityManager entityManager;
 
     @Override
-    @Transactional
     public List<User> getAllUsers() {
-        return entityManager.createQuery("SELECT user  FROM User user", User.class)
+        return entityManager.createQuery("FROM User", User.class)
                 .getResultList();
     }
 
+    @Override
+    public void addUser(User user) {
+        entityManager.persist(user);
+
+    }
 
 
 }
