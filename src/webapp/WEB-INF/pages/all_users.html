@@ -14,19 +14,30 @@
             <th>Name</th>
             <th>LastName</th>
             <th>Email</th>
+            <th>Operation</th>
         </tr>
         <tr>
         <tr th:each="user : ${allUsers}">
+
+<!--        <tr th:url="Button" th:value="/updateUser"></tr>-->
+<!--        <tr th:name="userId" th:value="${user.id}"></tr>-->
+
+
+
             <td th:utext="${user.getId()}"></td>
             <td th:utext="${user.getName()}"></td>
             <td th:utext="${user.getLastName()}"></td>
             <td th:utext="${user.getEmail()}"></td>
+
+        <td><a th:text="Update" th:href="@{updateUser/{userId}(userId=${user.getId()})}"></a>&nbsp;|&nbsp;<a
+               th:text="Delete" th:href="@{deleteUser/{userId}(userId=${user.getId()})}"></a>
         </tr>
     </table>
 
     <br>
     <input type="button" value="Add"
           onclick="window.location.href = 'addNewUser'" />
+<!--    <a th:href="addUser"><input type="button" id="addB" value="Add new user"></a>-->
 
 </div>
 </body>
