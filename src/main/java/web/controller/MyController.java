@@ -42,12 +42,18 @@ public class MyController {
     public String updateUser(@RequestParam("userId") int id, ModelMap model){
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
-        return "add_user";
+        return "update_user";
     }
 
     @GetMapping(value="/deleteUser/{id}")
     public String deleteUser(@PathVariable int id) {
         userService.deleteUser(id);
+        return "redirect:/";
+    }
+    @PostMapping(value="/updateUser/{getId}")
+    public String saveUpdateUser(@PathVariable int getId, @ModelAttribute("user") User user){
+        user.setId(getId);
+        userService.updateUser(user);
         return "redirect:/";
     }
 
