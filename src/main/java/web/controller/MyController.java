@@ -52,7 +52,7 @@ public class MyController {
     }
     @PatchMapping(value="/updateUser/{getId}")
     public String saveUpdateUser(@PathVariable int getId, @ModelAttribute("user") User user){
-//        user.setId(getId);
+        user.setId(getId);
         userService.updateUser(user);
         return "redirect:/";
     }
