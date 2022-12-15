@@ -19,8 +19,9 @@
         <tr>
         <tr th:each="user : ${allUsers}">
 
-<!--        <tr th:url="Button" th:value="/updateUser"></tr>-->
-<!--        <tr th:name="userId" th:value="${user.id}"></tr>-->
+<!--        <td> <a th:url="Button" th:value="/updateUser"></a>-->
+<!--        <a th:name="userId" th:value="${user.id}"></a>-->
+
 
 
 
@@ -35,9 +36,9 @@
     </table>
 
     <br>
-    <input type="button" value="Add"
-          onclick="window.location.href = 'addNewUser'" />
-<!--    <a th:href="addUser"><input type="button" id="addB" value="Add new user"></a>-->
+
+    <a th:href="addNewUser"><input type="button" id="addB" value="Add"></a>
+
 
 </div>
 </body>

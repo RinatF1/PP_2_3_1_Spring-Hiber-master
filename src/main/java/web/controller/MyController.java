@@ -12,24 +12,29 @@ import java.util.List;
 
 @Controller
 public class MyController {
+
+    private UserService userService;
     @Autowired
-    UserService userService;
+    public MyController(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping("/")
     public String showAllUsers(ModelMap model){
-        List<User> allUsers = userService.getAllUsers();
-        model.addAttribute("allUsers", allUsers);
-
+        model.addAttribute("allUsers", userService.getAllUsers());
     return "all_users";
     }
 
 
     @RequestMapping("/addNewUser")
     public String addNewUser(ModelMap model){
-        User user = new User();
-        model.addAttribute("user", user);
-
+        model.addAttribute("user", new User());
         return "add_user";
+    }
+    @GetMapping("/updateUser/{userId}")
+    public String updateUser(@PathVariable("userId") int id, ModelMap model){
+        model.addAttribute("user", userService.getUserById(id));
+        return "update_user";
     }
 
     @RequestMapping("/addUser")
@@ -38,21 +43,16 @@ public class MyController {
         return "redirect: /";
     }
 
-    @RequestMapping("/updateUser")
-    public String updateUser(@RequestParam("userId") int id, ModelMap model){
-        User user = userService.getUserById(id);
-        model.addAttribute("user", user);
-        return "update_user";
-    }
 
-    @GetMapping(value="/deleteUser/{id}")
+
+    @RequestMapping (value="/deleteUser/{id}")
     public String deleteUser(@PathVariable int id) {
         userService.deleteUser(id);
         return "redirect:/";
     }
-    @PostMapping(value="/updateUser/{getId}")
+    @PatchMapping(value="/updateUser/{getId}")
     public String saveUpdateUser(@PathVariable int getId, @ModelAttribute("user") User user){
-        user.setId(getId);
+//        user.setId(getId);
         userService.updateUser(user);
         return "redirect:/";
     }
