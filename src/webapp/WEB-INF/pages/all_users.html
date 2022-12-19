@@ -19,25 +19,24 @@
         <tr>
         <tr th:each="user : ${allUsers}">
 
-<!--        <td> <a th:url="Button" th:value="/updateUser"></a>-->
-<!--        <a th:name="userId" th:value="${user.id}"></a>-->
-
-
-
 
             <td th:utext="${user.getId()}"></td>
             <td th:utext="${user.getName()}"></td>
             <td th:utext="${user.getLastName()}"></td>
             <td th:utext="${user.getEmail()}"></td>
 
-        <td><a th:text="Update" th:href="@{updateUser/{userId}(userId=${user.getId()})}"></a>&nbsp;|&nbsp;<a
-               th:text="Delete" th:href="@{deleteUser/{userId}(userId=${user.getId()})}"></a>
+
+
+        <td><a th:text="Update" th:href="@{updateUser/{userId}(userId=${user.getId()})}"></a>&nbsp;|
+            <a th:text="Delete" th:href="@{deleteUser/{userId}(userId=${user.getId()})}"></a>
+
         </tr>
     </table>
 
     <br>
 
     <a th:href="addNewUser"><input type="button" id="addB" value="Add"></a>
+
 
 
 </div>
