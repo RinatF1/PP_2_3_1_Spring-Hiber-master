@@ -27,10 +27,13 @@
 
 
 
-        <td><a th:text="Update" th:href="@{updateUser/{userId}(userId=${user.getId()})}"></a>&nbsp;|
-            <a th:text="Delete" th:href="@{deleteUser/{userId}(userId=${user.getId()})}"></a>
+        <td><a th:text="Update" th:href="@{updateUser/{userId}(userId=${user.getId()})}"></a>&nbsp
+            <form th:method="delete" th:action="@{deleteUser/{userId}(userId=${user.getId()})}" >
+                <input type="submit" value="Delete"/>
+                </form>
 
-        </tr>
+        </td>
+    </tr>
     </table>
 
     <br>
